@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './auth/authSlice';
-import { contactsReducer } from './contacts/contactsSlice'; // Правильний шлях
+import { contactsReducer } from './contacts/contactsSlice';
 import {
   persistStore,
   persistReducer,
