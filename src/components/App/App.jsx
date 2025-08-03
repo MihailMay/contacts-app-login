@@ -1,18 +1,28 @@
-import ContactForm from '../ContactForm/ContactForm';
-import ContactList from '../ContactList/ContactList';
-import Filter from '../Filter/Filter';
-import styles from './App.module.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy } from 'react';
+import { PrivateRoute } from '../Auth/PrivateRoute'; // Без {}
+import { PublicRoute } from '../Auth/PublicRoute';   // Без {}
+import css from './App.module.css';
 
-const App = () => {
+const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+
+function App() {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Phonebook</h1>
-      <ContactForm />
-      <h2 className={styles.subtitle}>Contacts</h2>
-      <Filter />
-      <ContactList />
+    <div className={css.app}>
+      <Routes>
+        <Route path="/" element={<Navigate to="/contacts" />} />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute component={ContactsPage} />}
+        />
+        <Route
+          path="/login"
+          element={<PublicRoute component={LoginPage} />}
+        />
+      </Routes>
     </div>
   );
-};
+}
 
 export default App;
