@@ -1,0 +1,11 @@
+# Залежності
+node_modules/
+package-lock.json (якщо не хочете комітити)
+
+# Налаштування
+.env
+.DS_Store
+
+# Автозгенеровані файли
+dist/
+build/

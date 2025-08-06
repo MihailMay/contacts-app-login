@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/contacts-app-login/static/css/main.e6c13ad2.css",
+    "main.js": "/contacts-app-login/static/js/main.bc8b051a.js",
+    "static/js/855.bf07a32b.chunk.js": "/contacts-app-login/static/js/855.bf07a32b.chunk.js",
+    "static/css/264.f3eb4886.chunk.css": "/contacts-app-login/static/css/264.f3eb4886.chunk.css",
+    "static/js/264.f0c7ec7a.chunk.js": "/contacts-app-login/static/js/264.f0c7ec7a.chunk.js",
+    "static/js/46.5cff6ba5.chunk.js": "/contacts-app-login/static/js/46.5cff6ba5.chunk.js",
+    "index.html": "/contacts-app-login/index.html",
+    "main.e6c13ad2.css.map": "/contacts-app-login/static/css/main.e6c13ad2.css.map",
+    "main.bc8b051a.js.map": "/contacts-app-login/static/js/main.bc8b051a.js.map",
+    "264.f3eb4886.chunk.css.map": "/contacts-app-login/static/css/264.f3eb4886.chunk.css.map",
+    "264.f0c7ec7a.chunk.js.map": "/contacts-app-login/static/js/264.f0c7ec7a.chunk.js.map",
+    "46.5cff6ba5.chunk.js.map": "/contacts-app-login/static/js/46.5cff6ba5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.bc8b051a.js"
+  ]
+}
