@@ -1,13 +1,17 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contactsReducer';
-import ContactItem from '../ContactItem/ContactItem';
-import PropTypes from 'prop-types';
-import styles from './ContactList.module.css';
+import { deleteContact } from '../redux/contacts/contactsReducer';
+import { getContacts, getFilter } from '../redux/contacts/contactsReducer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Typography from '@mui/material/Typography';
+import css from './ContactList.module.css';
 
-const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter);
+export const ContactList = () => {
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
   const dispatch = useDispatch();
 
   const filteredContacts = contacts.filter(contact =>
@@ -15,27 +19,32 @@ const ContactList = () => {
   );
 
   return (
-    <ul className={styles.list}>
-      {filteredContacts.map(contact => (
-        <ContactItem
-          key={contact.id}
-          contact={contact}
-          onDelete={() => dispatch(deleteContact(contact.id))}
-        />
-      ))}
-    </ul>
+    <div className={css.container}>
+      <Typography variant="h6" component="h2" gutterBottom>
+        Contacts
+      </Typography>
+      {filteredContacts.length > 0 ? (
+        <List>
+          {filteredContacts.map(({ id, name, number }) => (
+            <ListItem 
+              key={id}
+              secondaryAction={
+                <IconButton 
+                  edge="end" 
+                  aria-label="delete"
+                  onClick={() => dispatch(deleteContact(id))}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              }
+            >
+              <ListItemText primary={name} secondary={number} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <Typography variant="body1">No contacts found</Typography>
+      )}
+    </div>
   );
 };
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ),
-  onDeleteContact: PropTypes.func,
-};
-
-export default ContactList;

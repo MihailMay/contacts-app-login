@@ -1,33 +1,30 @@
-export const ADD_CONTACT = 'contacts/add';
-export const DELETE_CONTACT = 'contacts/delete';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 
+// Дії
+export const addContact = createAction('contacts/add');
+export const deleteContact = createAction('contacts/delete');
+export const updateFilter = createAction('filter/update');
+
+// Початковий стан
 const initialState = {
   items: [],
+  filter: '',
 };
 
-export const contactsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_CONTACT:
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
-    case DELETE_CONTACT:
-      return {
-        ...state,
-        items: state.items.filter(contact => contact.id !== action.payload),
-      };
-    default:
-      return state;
-  }
-};
-
-export const addContact = contact => ({
-  type: ADD_CONTACT,
-  payload: contact,
+// Редюсер
+export const contactsReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(addContact, (state, action) => {
+      state.items.push(action.payload);
+    })
+    .addCase(deleteContact, (state, action) => {
+      state.items = state.items.filter(contact => contact.id !== action.payload);
+    })
+    .addCase(updateFilter, (state, action) => {
+      state.filter = action.payload;
+    });
 });
 
-export const deleteContact = id => ({
-  type: DELETE_CONTACT,
-  payload: id,
-});
+// Селектори
+export const selectContacts = state => state.contacts.items;
+export const selectFilter = state => state.contacts.filter;
